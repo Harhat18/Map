@@ -17,11 +17,14 @@ export default function DisplayPosition({ map, setMarkers }) {
 
   const savePositionToServer = useCallback(async () => {
     try {
-      const response = await axios.post("http://localhost:4000/api/points", {
-        id: Math.random(),
-        lat: position.lat.toFixed(2),
-        lng: position.lng.toFixed(2),
-      });
+      const response = await axios.post(
+        "https://map-6zjpqkpbi-harunhatib18-gmailcom.vercel.app/api/points",
+        {
+          id: Math.random(),
+          lat: position.lat.toFixed(2),
+          lng: position.lng.toFixed(2),
+        }
+      );
       console.log("Position saved:", response.data);
       setMarkers((prevMarkers) => [...prevMarkers, response.data]);
     } catch (error) {
