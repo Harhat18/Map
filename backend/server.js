@@ -51,6 +51,6 @@ app.post("/api/points", async (req, res) => {
 //   }
 // });
 
-app.listen(4000 || port, () => {
+app.listen(process.env.PORT, () => {
   console.log(`Server is running on port ${port}`);
 });
