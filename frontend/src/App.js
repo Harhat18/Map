@@ -25,7 +25,7 @@ function MapView() {
 
   const handleDownload = () => {
     const jsonData = JSON.stringify(markers);
-    const blob = new Blob([jsonData], { type: "application/json" });
+    const blob = new Blob([jsonData], { type: "json" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;

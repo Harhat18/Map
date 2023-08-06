@@ -11,25 +11,23 @@ const port = process.env.PORT;
 app.use(bodyParser.json());
 app.use(cors());
 
-mongoose.connect(
-  "mongodb+srv://harfat:12341234@cluster0.6lgeyf2.mongodb.net/map?retryWrites=true&w=majority",
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
-);
+mongoose.connect(process.env.MONGO_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 const PointSchema = new mongoose.Schema({
+  Id: Number,
   lat: String,
   lng: String,
-  datetime: { type: Date, default: Date.now },
+  datetime: { type: Date, default: Date.now() },
 });
 
 const Point = mongoose.model("Point", PointSchema);
 
 app.post("/api/points", async (req, res) => {
-  const { lat, lng, datetime } = req.body;
-  const point = new Point({ lat, lng, datetime });
+  const { Id, lat, lng, datetime } = req.body;
+  const point = new Point({ Id, lat, lng, datetime });
   await point.save();
   res.status(201).json(point);
 });
