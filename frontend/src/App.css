@@ -52,26 +52,22 @@
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
-  margin-bottom: 8px;
-  margin-top: 8px;
+  margin-bottom: 0;
 }
 .downloadButton:hover {
   background-color: #0056b3;
 }
 
 .tableContainer {
-  overflow: auto;
-  height: 85%;
+  overflow: scroll;
+  height: 85;
 }
 
 .dataTable {
   width: 100%;
   border-collapse: collapse;
   border: 1px solid #ddd;
-
-  margin-bottom: 20px;
-  width: 100%;
-  border-collapse: collapse;
+  height: auto;
 }
 
 .dataTable th,
