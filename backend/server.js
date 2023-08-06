@@ -22,7 +22,8 @@ const PointSchema = new mongoose.Schema({
   lng: String,
   datetime: {
     type: Date,
-    default: () => new Date(Date.now() + 3 * 60 * 60 * 1000), // UTC+3
+    default: () => new Date(Date.now()),
+    tz: "Europe/Istanbul", // Türkiye saati (İstanbul)
   },
 });
 
