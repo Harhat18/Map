@@ -20,7 +20,10 @@ const PointSchema = new mongoose.Schema({
   Id: Number,
   lat: String,
   lng: String,
-  datetime: { type: Date, default: Date.now() },
+  datetime: {
+    type: Date,
+    default: () => new Date(Date.now() + 3 * 60 * 60 * 1000), // UTC+3
+  },
 });
 
 const Point = mongoose.model("Point", PointSchema);
