@@ -59,7 +59,7 @@
 }
 
 .tableContainer {
-  overflow: scroll;
+  overflow: auto;
   height: 85%;
 }
 
