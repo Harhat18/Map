@@ -11,10 +11,13 @@ const port = process.env.PORT;
 app.use(bodyParser.json());
 app.use(cors());
 
-mongoose.connect(process.env.MONGO_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(
+  "mongodb+srv://harhat:12341234@cluster0.gfzlzpr.mongodb.net/Map?retryWrites=true&w=majority",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
 
 const PointSchema = new mongoose.Schema({
   Id: Number,
