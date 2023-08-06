@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import axios from "axios";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import { MapContainer, Marker, TileLayer } from "react-leaflet";
 import DisplayPosition from "./components/DisplayPosition";
 
 function MapView() {
@@ -78,16 +78,16 @@ function MapView() {
               </tr>
             </thead>
             <tbody>
-              {markers.map((marker) => (
+              {markers.map((marker, index) => (
                 <tr
                   key={marker._id}
                   onClick={() => handleTableRowClick(marker)}
                 >
-                  <td> {marker._id}</td>
+                  <td>{index + 1}</td>
                   <td>{[marker.lat, "-", marker.lng]}</td>
                   <td>
                     {marker.datetime.slice(0, 10)} -{" "}
-                    {marker.datetime.slice(11, 19)}
+                    {marker.datetime.slice(11, 16)}
                   </td>
                   <td>
                     <button
