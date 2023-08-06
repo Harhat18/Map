@@ -46,7 +46,7 @@ export default function DisplayPosition({ map, setMarkers }) {
       </p>
 
       <button
-        className="save-button"
+        className="saveButton"
         onClick={savePositionToServer}
         type="button"
       >

@@ -41,12 +41,12 @@ function MapView() {
   };
   return (
     <div className="container">
-      <div className="map-container">
+      <div className="mapContainer">
         <MapContainer
           center={[37.79, 29.06]}
           zoom={13}
           scrollWheelZoom={false}
-          style={{ height: "100vh", width: "100vh" }}
+          style={{ height: "100%", width: "100%" }}
           ref={setMap}
         >
           <TileLayer
@@ -66,8 +66,8 @@ function MapView() {
         <div>
           {map ? <DisplayPosition map={map} setMarkers={setMarkers} /> : null}
         </div>
-        <div className="table-container">
-          <table className="data-table">
+        <div className="tableContainer">
+          <table className="dataTable">
             <thead>
               <tr>
                 <th>Id</th>
@@ -91,7 +91,7 @@ function MapView() {
                   </td>
                   <td>
                     <button
-                      className="go-button"
+                      className="goButton"
                       onClick={() => handleTableRowClick(marker)}
                     >
                       Göster
@@ -99,7 +99,7 @@ function MapView() {
                   </td>
                   <td>
                     <button
-                      className="delete-button"
+                      className="deleteButton"
                       onClick={() => handleDelete(marker._id)}
                     >
                       Sil
@@ -112,7 +112,7 @@ function MapView() {
         </div>
 
         <div className="downloadContainer">
-          <button className="download-button" onClick={handleDownload}>
+          <button className="downloadButton" onClick={handleDownload}>
             İndir
           </button>
         </div>
