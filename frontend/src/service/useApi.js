@@ -8,8 +8,7 @@ function useApi() {
   useEffect(() => {
     setTimeout(() => {
       axios
-        // .get("http://localhost:4000/api/points")
-        .get("https://map-sand.vercel.app/api/points")
+        .get("http://localhost:4000/api/points")
         .then((response) => {
           setMarkers(response.data);
           setLoading(false);
