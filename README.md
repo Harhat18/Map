@@ -1,6 +1,6 @@
 # React Map Application
 
-This project is a simple React map application with added functionality for marking locations on the map using React, Leaflet, and React-Leaflet libraries. It also includes server-side data management using Express and MongoDB.
+This project is a simple React map application with added functionality for marking locations on the map using React and React-Leaflet libraries. It also includes server-side data management using Node.js Express and MongoDB.
 
 ## Prerequisites
 
