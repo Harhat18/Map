@@ -8,7 +8,7 @@ function useApi() {
   useEffect(() => {
     setTimeout(() => {
       axios
-        .get("http://localhost:4000/api/points")
+        .get("https://map-test-8hpjonpq9-harunhatib18-gmailcom.vercel.app/api/points")
         .then((response) => {
           setMarkers(response.data);
           setLoading(false);
