@@ -23,8 +23,13 @@ const PointSchema = new mongoose.Schema({
   datetime: {
     type: Date,
     default: () => new Date(Date.now()),
-    tz: "Europe/Istanbul", // Türkiye saati (İstanbul)
+    tz: "Europe/Istanbul",
   },
+});
+
+PointSchema.pre("save", function (next) {
+  this.datetime.setHours(this.datetime.getHours() + 3);
+  next();
 });
 
 const Point = mongoose.model("Point", PointSchema);
