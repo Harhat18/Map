@@ -1,68 +1,39 @@
-import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
+import { useOnMove } from "../hook/useOnMove";
+import { useSavePosition } from "../hook/useSavePosition";
+import { useGetMyPosition } from "../hook/useGetMyPosition";
 
 const zoom = 13;
 
 export default function DisplayPosition({ map, setMarkers }) {
   const [position, setPosition] = useState(() => map.getCenter());
-
-  const onMove = useCallback(() => {
-    setPosition(map.getCenter());
-  }, [map]);
-
-  const savePositionToServer = useCallback(async () => {
-    try {
-      const response = await axios.post("http://localhost:4000/api/points", {
-        id: Math.random(),
-        lat: position.lat.toFixed(2),
-        lng: position.lng.toFixed(2),
-      });
-      console.log("Position saved:", response.data);
-      setMarkers((prevMarkers) => [...prevMarkers, response.data]);
-    } catch (error) {
-      console.error("Error saving position:", error);
-    }
-  }, [position.lat, position.lng, setMarkers]);
+  const handleOnMove = useOnMove(map, setPosition);
+  const handleSavePosition = useSavePosition(position, setMarkers);
+  const handleGetMyPosition = useGetMyPosition(map);
 
   useEffect(() => {
-    map.on("move", onMove);
+    map.on("move", handleOnMove);
     return () => {
-      map.off("move", onMove);
+      map.off("move", handleOnMove);
     };
-  }, [map, onMove]);
-
-  const getMyPosition = useCallback(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
-          map.setView([latitude, longitude], zoom);
-        },
-        (error) => {
-          console.error("Error getting current position:", error.message);
-        }
-      );
-    } else {
-      console.error("Geolocation is not supported by this browser.");
-    }
-  }, [map]);
+  }, [map, handleOnMove]);
 
   return (
     <div>
       <div className="positonContainer">
         <p className="positonText">
-          latitude: {position.lat.toFixed(2)} - longitude:{" "}
+          latitude: {position.lat.toFixed(2)} - longitude:
           {position.lng.toFixed(2)}
         </p>
-        <button className="positonButton" onClick={getMyPosition} type="button">
+        <button
+          className="positonButton"
+          onClick={handleGetMyPosition}
+          type="button"
+        >
           Konumuma Git
         </button>
       </div>
-      <button
-        className="saveButton"
-        onClick={savePositionToServer}
-        type="button"
-      >
+      <button className="saveButton" onClick={handleSavePosition} type="button">
         Konumu Kaydet
       </button>
     </div>

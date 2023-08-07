@@ -1,17 +1,10 @@
 import React from "react";
+import { useHandleTableRowClick } from "../hook/useHandleTableRowClick";
+import { useHandleDelete } from "../hook/useHandleDelete";
 
 function DataTable({ markers, loading, map, setSelectedMarkerId, setMarkers }) {
-  const handleDelete = (markerId) => {
-    const updatedMarkers = markers.filter((marker) => marker._id !== markerId);
-    setMarkers(updatedMarkers);
-  };
-
-  const handleTableRowClick = (marker) => {
-    setSelectedMarkerId(marker._id);
-    if (map) {
-      map.setView([marker.lat, marker.lng], 13);
-    }
-  };
+  const handleDelete = useHandleDelete(markers, setMarkers);
+  const handleTableRowClick = useHandleTableRowClick(map, setSelectedMarkerId);
 
   return (
     <div className="tableContainer">

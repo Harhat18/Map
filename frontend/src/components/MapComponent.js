@@ -1,15 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { MapContainer, Marker, TileLayer } from "react-leaflet";
 
 const MapComponent = ({ markers, center, zoom, selectedMarkerId, setMap }) => {
-  const [fixedCenter, setFixedCenter] = useState(center);
-  useEffect(() => {
-    setFixedCenter(center);
-  }, [center]);
-
   return (
     <MapContainer
-      center={fixedCenter}
+      center={center}
       zoom={zoom}
       scrollWheelZoom={false}
       style={{ height: "100%", width: "100%" }}

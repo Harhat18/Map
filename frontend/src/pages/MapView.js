@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import "../../src/App.css";
-
 import DisplayPosition from "../components/DisplayPosition";
 import DataTable from "../components/DataTable";
 import MapComponent from "../components/MapComponent";
 import DownloadButton from "../components/DownloadButton";
-import useApi from "../hook/useApi";
+import useApi from "../service/useApi";
 
 function MapView() {
   const { markers, loading, setMarkers } = useApi();
-
   const [map, setMap] = useState(null);
   const [selectedMarkerId, setSelectedMarkerId] = useState(null);
 
