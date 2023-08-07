@@ -17,6 +17,6 @@ app.use(cors());
 
 app.use("/api/points", Point);
 
-app.listen(port, () => {
+app.listen(process.env.PORT, () => {
   console.log(`Start server on ${port}`);
 });
