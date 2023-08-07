@@ -23,7 +23,6 @@ const PointSchema = new mongoose.Schema({
   datetime: {
     type: Date,
     default: () => new Date(Date.now()),
-    tz: "Europe/Istanbul",
   },
 });
 
