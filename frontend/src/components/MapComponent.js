@@ -14,7 +14,7 @@ const MapComponent = ({ markers, center, zoom, selectedMarkerId, setMap }) => {
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Marker position={center} opacity={1}></Marker>
+
       {markers.map((marker) => (
         <Marker
           key={marker._id}
