@@ -5,7 +5,7 @@ import DisplayPosition from "../components/DisplayPosition";
 import DataTable from "../components/DataTable";
 import MapComponent from "../components/MapComponent";
 import DownloadButton from "../components/DownloadButton";
-import useApi from "../api/useApi";
+import useApi from "../hook/useApi";
 
 function MapView() {
   const { markers, loading, setMarkers } = useApi();
