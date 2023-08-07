@@ -17,9 +17,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-### NextJS ###
-# Next build dir
-.next/
 # env files
 .env
 .env.local
