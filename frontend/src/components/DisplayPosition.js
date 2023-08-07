@@ -1,15 +1,10 @@
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
 
-const center = [37.79, 29.06];
 const zoom = 13;
 
 export default function DisplayPosition({ map, setMarkers }) {
   const [position, setPosition] = useState(() => map.getCenter());
-  console.log(position.lat.toFixed(2), position.lng.toFixed(2));
-  const onClick = useCallback(() => {
-    map.setView(center, zoom);
-  }, [map]);
 
   const onMove = useCallback(() => {
     setPosition(map.getCenter());
@@ -17,20 +12,17 @@ export default function DisplayPosition({ map, setMarkers }) {
 
   const savePositionToServer = useCallback(async () => {
     try {
-      const response = await axios.post(
-        "https://map-6zjpqkpbi-harunhatib18-gmailcom.vercel.app/api/points",
-        {
-          id: Math.random(),
-          lat: position.lat.toFixed(2),
-          lng: position.lng.toFixed(2),
-        }
-      );
+      const response = await axios.post("http://localhost:4000/api/points", {
+        id: Math.random(),
+        lat: position.lat.toFixed(2),
+        lng: position.lng.toFixed(2),
+      });
       console.log("Position saved:", response.data);
       setMarkers((prevMarkers) => [...prevMarkers, response.data]);
     } catch (error) {
       console.error("Error saving position:", error);
     }
-  }, [position.lat, position.lng]);
+  }, [position.lat, position.lng, setMarkers]);
 
   useEffect(() => {
     map.on("move", onMove);
@@ -39,15 +31,33 @@ export default function DisplayPosition({ map, setMarkers }) {
     };
   }, [map, onMove]);
 
+  const getMyPosition = useCallback(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          map.setView([latitude, longitude], zoom);
+        },
+        (error) => {
+          console.error("Error getting current position:", error.message);
+        }
+      );
+    } else {
+      console.error("Geolocation is not supported by this browser.");
+    }
+  }, [map]);
+
   return (
     <div>
-      <p>
-        latitude: {position.lat.toFixed(2)} longitude: {position.lng.toFixed(2)}
-        <button onClick={onClick} className="centerButton">
-          Sıfırla
+      <div className="positonContainer">
+        <p className="positonText">
+          latitude: {position.lat.toFixed(2)} - longitude:{" "}
+          {position.lng.toFixed(2)}
+        </p>
+        <button className="positonButton" onClick={getMyPosition} type="button">
+          Konumuma Git
         </button>
-      </p>
-
+      </div>
       <button
         className="saveButton"
         onClick={savePositionToServer}

@@ -30,9 +30,9 @@
   height: 100%;
 }
 .saveButton {
-  background-color: #007bff;
+  background-color: #61677a;
   color: white;
-  padding: 10px 20px;
+  padding: 10px 15px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -41,26 +41,58 @@
   margin-bottom: 8px;
 }
 .saveButton:hover {
-  background-color: #0056b3;
+  background-color: #d8d9da;
+  color: black;
 }
 
 .downloadButton {
-  background-color: #007bff;
+  background-color: #61677a;
   color: white;
-  padding: 10px 20px;
+  padding: 8px 15px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
-  margin-bottom: 0;
+  margin-bottom: 8;
+  margin-top: 15px;
 }
 .downloadButton:hover {
-  background-color: #0056b3;
+  background-color: #d8d9da;
+  color: black;
+}
+.positonContainer {
+  display: flex;
+  flex-direction: row;
+  margin: 4px;
+
+  align-items: center;
+}
+.positonText {
+  font-size: 16px;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+}
+.positonButton {
+  background-color: #61677a;
+  color: white;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  margin: 4px;
+  margin-left: 10px;
 }
 
+.positonButton:hover {
+  background-color: #d8d9da;
+  color: black;
+}
 .tableContainer {
   overflow: auto;
-  height: 85%;
+  height: 80%;
+  max-height: 70vh;
 }
 
 .dataTable {
@@ -68,16 +100,30 @@
   border-collapse: collapse;
   border: 1px solid #ddd;
   height: auto;
+  font-size: 14px;
 }
 
 .dataTable th,
 .dataTable td {
   padding: 10px;
   text-align: left;
+  font-size: 6;
 }
 
 .dataTable th {
   background-color: #f2f2f2;
+}
+
+.emptyTable {
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+}
+.dataTable th {
+  background-color: #f2f2f2;
+  .deleteButton:hover {
+    background-color: #c82333;
+  }
 }
 
 .deleteButton {
@@ -97,21 +143,21 @@
   background-color: #c82333;
 }
 .goButton {
-  background-color: green;
+  background-color: #61677a;
   color: white;
   border: none;
   border-radius: 5px;
   padding: 5px 10px;
   cursor: pointer;
 }
-
-.goButton i {
+.goButton:hover {
+  background-color: #d8d9da;
+  color: black;
+}
+.getMyPositionButton i {
   margin-right: 5px;
 }
 
-.goButton:hover {
-  background-color: #c82333;
-}
 .centerButton {
   margin-left: 8px;
   justify-content: center;
@@ -135,6 +181,11 @@
   }
   .tableContainer {
     overflow: auto;
-    height: 70%;
+    height: 25%;
+    max-height: 40vh;
+    font-size: 12px;
+  }
+  .dataTable {
+    font-size: 10px;
   }
 }
